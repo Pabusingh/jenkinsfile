@@ -3,13 +3,13 @@ pipeline {
     parameters {
         choice(
             name: 'PLATFORM',
-            choices:"\nArt19-Data-Pipeline\nBrightcove-Report\nBrightcove-Video\nData-Delivery\nGlobal_Facebook_Engagement_Score\nGoogle-Analytics-Data-Pipeline\nInstagram-Data-Pipeline\nTwitter-Analytics\nTwitter-Data-Pipeline\nYoutube-Data",
+            choices:"Test\nArt19-Data-Pipeline\nBrightcove-Report\nBrightcove-Video\nData-Delivery\nGlobal_Facebook_Engagement_Score\nGoogle-Analytics-Data-Pipeline\nInstagram-Data-Pipeline\nTwitter-Analytics\nTwitter-Data-Pipeline\nYoutube-Data",
             description: "Choose the lambda function to deploy or rollback")
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building..the project in environment ${STAGE}"
+                // echo "Building..the project in environment ${STAGE}"
                 echo "Parameters are ${PLATFORM}"
                 
             }
