@@ -15,6 +15,7 @@ pipeline {
             steps {
                 // echo "Building..the project in environment ${STAGE}"
                 echo " Parameters are ${PLATFORM}"
+                echo " STAGE IS ${STAGE}"
                 
             }
         }
