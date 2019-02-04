@@ -24,6 +24,9 @@ pipeline {
                       #curl request
                       echo "git hash:-  ${git_hash}"
                       curl https://timesofindia.com
+
+                      apikey=`aws --output json secretsmanager get-secret-value --secret-id dev/stream/cms --region us-east-1 | jq --raw-output '.SecretString' |jq  -r .NEWRELIC_APIKEY`
+                      echo "api key is ${apikey}"
                 '''
                 
 
