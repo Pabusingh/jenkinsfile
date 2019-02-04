@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                echo "Environment :- ${ENVIRONMENT}"
             }
         }
         stage('Test') {
@@ -14,7 +15,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying to ${ENVIRONMENT}....'
+                sh 'curl https://timesofindia.com'
+
             }
         }
     }
