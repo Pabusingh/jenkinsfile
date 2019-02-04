@@ -15,8 +15,11 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying to ${ENVIRONMENT}....'
-                sh 'curl https://timesofindia.com'
+                echo "Deploying to ${ENVIRONMENT}...."                
+                sh '''#!/bin/bash
+                      set +e
+                      curl https://timesofindia.com
+                '''
 
             }
         }
