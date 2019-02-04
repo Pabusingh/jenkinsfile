@@ -16,11 +16,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying to ${ENVIRONMENT}...."                
+                git_hash=`echo $GIT_COMMIT | cut -c -8`
+                echo "git hash:-  ${git_hash}"
                 sh '''#!/bin/bash
                       set +e
                       #curl request
                       curl https://timesofindia.com
                 '''
+                
 
             }
         }
