@@ -18,6 +18,7 @@ pipeline {
                 echo "Deploying to ${ENVIRONMENT}...."                
                 sh '''#!/bin/bash
                       set +e
+                      #curl request
                       curl https://timesofindia.com
                 '''
 
