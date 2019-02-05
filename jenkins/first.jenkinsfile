@@ -27,9 +27,13 @@ pipeline {
 
                       newrelic_keys=(`aws --output json secretsmanager get-secret-value --secret-id dev/stream/cms --region us-east-1 | jq --raw-output '.SecretString' |jq  -r .NEWRELIC_APIKEY,.APPLICATION_ID`)                      
                       echo "New Relic Key:- ${newrelic_keys[0]},  Application Id:- ${newrelic_keys[1]} "
+                      api_key=${newrelic_keys[0]}
+                      app_id=${newrelic_keys[1]}
 
-                           curl -X POST 'https://api.newrelic.com/v2/applications/${newrelic_keys[1]}/deployments.json' \
-                                -H 'X-Api-Key:${newrelic_keys[0]}' -i \
+                      echo "Api key:- ${api_key},  App Id:- ${app_id} "
+
+                           curl -X POST 'https://api.newrelic.com/v2/applications/${app_id}/deployments.json' \
+                                -H 'X-Api-Key:${api_key}' -i \
                                 -H 'Content-Type: application/json' \
                                 -d \
                             '{
