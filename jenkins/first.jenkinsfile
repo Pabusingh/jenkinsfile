@@ -32,8 +32,8 @@ pipeline {
 
                       echo "Api key:- ${api_key},  App Id:- ${app_id} "
 
-                           curl -X POST 'https://api.newrelic.com/v2/applications/${app_id}/deployments.json' \
-                                -H 'X-Api-Key:${api_key}' -i \
+                           curl -X POST "https://api.newrelic.com/v2/applications/${app_id}/deployments.json" \
+                                -H "X-Api-Key:${api_key}" -i \
                                 -H 'Content-Type: application/json' \
                                 -d \
                             '{
