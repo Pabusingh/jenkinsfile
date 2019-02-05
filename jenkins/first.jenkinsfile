@@ -29,9 +29,11 @@ pipeline {
                       echo "New Relic Key:- ${newrelic_keys[0]},  Application Id:- ${newrelic_keys[1]} "
                       api_key=${newrelic_keys[0]}
                       app_id=${newrelic_keys[1]}
-
+                      git_author=$(git show -s --pretty=%an)
+                      git_author_email=$(git show -s --pretty=%ae)
+                      git_commit_message=$(git show -s --pretty=%s)
                       echo "Api key:- ${api_key},  App Id:- ${app_id} "
-                      echo "git_hash:- ${git_hash},  user:- ${GIT_AUTHOR_NAME} , Email:- ${GIT_COMMITTER_EMAIL} "
+                      echo "git_hash:- ${git_hash},  user:- ${git_author} , Email:- ${git_author_email} , message:- ${git_commit_message}"
 
                            curl -X POST "https://api.newrelic.com/v2/applications/${app_id}/deployments.json" \
                                 -H "X-Api-Key:${api_key}" -i \
@@ -40,9 +42,9 @@ pipeline {
                             '{
                                 "deployment": {
                                 "revision": "'"${git_hash}"'",
-                                "changelog": "From Jenkins",
-                                "description": "From Jenkins description",
-                                "user": "'"${GIT_AUTHOR_NAME}"'"
+                                "changelog": "'"${git_commit_message}"'",
+                                "description": "'"${git_commit_message}"'",
+                                "user": "'"${git_author} ${git_author_email}"'"
                                 }
                             }'
 
