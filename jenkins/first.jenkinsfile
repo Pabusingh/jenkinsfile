@@ -31,6 +31,7 @@ pipeline {
                       app_id=${newrelic_keys[1]}
 
                       echo "Api key:- ${api_key},  App Id:- ${app_id} "
+                      echo "git_hash:- ${git_hash},  user:- ${GIT_AUTHOR_NAME} "
 
                            curl -X POST "https://api.newrelic.com/v2/applications/${app_id}/deployments.json" \
                                 -H "X-Api-Key:${api_key}" -i \
@@ -38,10 +39,10 @@ pipeline {
                                 -d \
                             '{
                                 "deployment": {
-                                "revision": "${git_hash}",
+                                "revision": "echo -n ${git_hash}"",
                                 "changelog": "From Jenkins",
                                 "description": "From Jenkins description",
-                                "user": "${GIT_AUTHOR_NAME}"
+                                "user": "echo -n ${GIT_AUTHOR_NAME}"
                                 }
                             }'
 
