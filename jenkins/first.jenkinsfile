@@ -25,8 +25,8 @@ pipeline {
                       echo "git hash:-  ${git_hash}"
                       curl https://timesofindia.com
 
-                      newrelic_key=`aws --output json secretsmanager get-secret-value --secret-id dev/stream/cms --region us-east-1 | jq --raw-output '.SecretString' |jq  -r .NEWRELIC_APIKEY`                      
-                      echo "New Relic Key:- ${newrelic_key} "
+                      newrelic_keys=(`aws --output json secretsmanager get-secret-value --secret-id dev/stream/cms --region us-east-1 | jq --raw-output '.SecretString' |jq  -r .NEWRELIC_APIKEY,.APPLICATION_ID`)                      
+                      echo "New Relic Key:- ${newrelic_keys[0]},  Application Id:- ${newrelic_keys[1]} "
                 '''
                 
 
