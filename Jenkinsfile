@@ -17,6 +17,7 @@ pipeline {
                 echo " Parameters are ${PLATFORM}"
                 echo " STAGE IS ${STAGE}"
                 echo " This is from iss53"
+                echo " This is hotfix branch"
                 
             }
         }
