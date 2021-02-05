@@ -1,0 +1,40 @@
+pipeline{
+    agent any
+    stages{
+        stage("Build"){
+            steps{
+                script{
+                    echo "Upstream tag: $GIT_BRANCH"
+                    def image_build;
+                    build job:"demo3-2"
+                    image_build = build job: "demo3-2", propagate: true
+                    echo "====++++image_build++++===="
+                    echo image_build.result
+                }
+                
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
